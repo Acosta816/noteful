@@ -1,26 +1,66 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Route, Switch, Link} from 'react-router-dom';
+import DummyStore from './dummy-store';
+import NavLinks from './Nav/Nav';
+import NotesListPage from './NotesListPage/NotesListPage';
+import NotePage from './NotePage/NotePage';
+import './App.css'
+import SpangleyFolder from './SpangleyFolder/SpangleyFolder';
+import SuperFolder from './SuperFolder/SuperFolder';
+import ImportantFolder from './ImportantFolder/ImportantFolder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//all Routes will have same header
+//state will be passed in by fake responseJson object 
+
+class  App extends React.Component {
+
+  state = {
+    folders: [],
+    notes: []
+  }
+  
+  componentDidMount(){
+    this.setState(DummyStore)
+  }
+
+
+  render(){
+    console.log(this.state);
+
+    return (
+      <div className="App">
+        <nav className="navBar">
+        <Route path='/' component={NavLinks}/>
+          
+        </nav>
+
+        <header className="app-title">
+          <Link to="/"><h1>Noteful</h1></Link>
+        </header>
+
+        <main>
+
+          <Switch>
+
+            <Route exact path='/' component={NotesListPage} />
+
+            <Route path="/folder/:folderId" component={SpangleyFolder}/>
+            <Route path="/folder/:folderId" component={SuperFolder}/>
+            <Route path="/folder/:folderId" component={ImportantFolder}/>
+
+            <Route path="/note/:noteId" component ={NotePage} /> {/*Route component is passing down it's props */}
+
+          </Switch>
+
+          
+
+        </main>
+
+      </div>
+    );
+
+  }
+  
 }
 
 export default App;
