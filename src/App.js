@@ -2,12 +2,10 @@ import React from 'react';
 import {Route, Switch, Link} from 'react-router-dom';
 import DummyStore from './dummy-store';
 import NavLinks from './Nav/Nav';
-import NotesListPage from './NotesListPage/NotesListPage';
 import NotePage from './NotePage/NotePage';
 import './App.css'
-import SpangleyFolder from './SpangleyFolder/SpangleyFolder';
-import SuperFolder from './SuperFolder/SuperFolder';
-import ImportantFolder from './ImportantFolder/ImportantFolder';
+import FilteredLinks from './FilteredLinks/FilteredLinks';
+import Home from './Home/Home';
 
 //all Routes will have same header
 //state will be passed in by fake responseJson object 
@@ -29,9 +27,9 @@ class  App extends React.Component {
 
     return (
       <div className="App">
+
         <nav className="navBar">
         <Route path='/' component={NavLinks}/>
-          
         </nav>
 
         <header className="app-title">
@@ -42,11 +40,9 @@ class  App extends React.Component {
 
           <Switch>
 
-            <Route exact path='/' component={NotesListPage} />
-            
-            <Route path="/folder/:folderId" component={SpangleyFolder}/>
-            <Route path="/folder/:folderId" component={SuperFolder}/>
-            <Route path="/folder/:folderId" component={ImportantFolder}/>
+            <Route exact path='/' component={Home} />
+
+            <Route path="/folder/:folderId" component={FilteredLinks}/>
 
             <Route path="/note/:noteId" component ={NotePage} /> {/*Route component is passing down it's props */}
 

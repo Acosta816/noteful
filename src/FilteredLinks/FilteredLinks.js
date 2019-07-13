@@ -5,21 +5,21 @@ import DummyStore from '../dummy-store';
 
 
 
-class SuperFolder extends React.Component {
+class FilteredLinks extends React.Component {
 
-    findNotes= (note)=>{
-        return note.folderId === DummyStore.folders[1].id
+    findNotes= (note)=> {
+        return note.folderId === this.props.match.params.folderId
     }
 
     render(){
-        const SuperNotes = DummyStore.notes.filter(this.findNotes);
-        console.log(SuperNotes);
+        const FilteredLinks = DummyStore.notes.filter(this.findNotes);
+        console.log(this.props);
          
         return(
             <>
             <p>click on a note or on a folder</p>
             <ul className="NotesList">
-                {SuperNotes.map(note=> {
+                {FilteredLinks.map(note=> {
                     
                     return(
                         <li key={note.id}>
@@ -36,4 +36,4 @@ class SuperFolder extends React.Component {
     }
 }
 
-export default SuperFolder;
+export default FilteredLinks;

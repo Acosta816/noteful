@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 
 
-function NotesListPage(props) {
+function Home(props) {
 
 
     return(
@@ -27,4 +27,4 @@ function NotesListPage(props) {
 }
 
 
-export default NotesListPage;
+export default Home;
