@@ -43,7 +43,7 @@ class  App extends React.Component {
           <Switch>
 
             <Route exact path='/' component={NotesListPage} />
-
+            
             <Route path="/folder/:folderId" component={SpangleyFolder}/>
             <Route path="/folder/:folderId" component={SuperFolder}/>
             <Route path="/folder/:folderId" component={ImportantFolder}/>
